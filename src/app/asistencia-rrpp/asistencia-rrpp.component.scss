@@ -1,0 +1,17 @@
+.content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    justify-items: center;
+    height: 91%;
+    width: 100%;
+    position: absolute;
+    div{
+        height: 33.33%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        border-top: solid black
+    }
+}

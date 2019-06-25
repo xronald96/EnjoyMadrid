@@ -1,0 +1,36 @@
+<body class="body" >
+  <div class="nav">
+    <div (click) = "navBar=!navBar"  class="barNav"><i class="fas fa-bars fa-2x">
+    </i></div>
+    <div class="title" [routerLink]="['/home']">Enjoy Madrid</div>
+  </div>
+  <nav *ngIf="navBar" class ="menu">
+      <ul>
+        <li (click)="navBar=!navBar" [routerLink]="['/asistencia-rrpp']">
+          <div>
+            Asistencia RRPP
+          </div> 
+        </li>
+        <li (click)="navBar=!navBar" [routerLink]="['/list']">
+          <div>
+            Listas
+          </div>
+        </li>
+        <li (click)="navBar=!navBar" [routerLink]="['/alta-rrpp']">
+          <div>
+            Historial de recuentos
+          </div>
+        </li>
+        <li (click)="navBar=!navBar" [routerLink]="['/alta-rrpp']"> 
+          <div>
+            Alta de RRPPs
+          </div>
+        </li>
+      </ul>
+      <div class ="exit">
+        Salir <i class="fas fa-sign-out-alt fa-2x"></i>
+      </div>
+    </nav>
+    <router-outlet></router-outlet>
+</body>
+  

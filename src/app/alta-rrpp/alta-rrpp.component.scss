@@ -1,0 +1,47 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    height: 91%;
+    width: 100%;
+    position: absolute;
+    .titulo{
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        height: 10%;
+        justify-content: center;
+        align-items: center;
+    }
+    form{
+        height: 79%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        div{
+            width: 80%;
+        }
+        
+        .save{
+            background-color: black !important;
+            margin-bottom: 2%
+        }
+    }
+    .import{
+        display: flex;
+        justify-content: center;
+    }
+    .alertContent{
+        display: flex;
+        justify-content: center;
+        .alert{
+            width: 80%;
+            text-align: center;
+        }
+    }
+    .custom-file{
+        width: 80% !important;
+    }
+    .custom-file-input ~ .custom-file-label::after {
+        content: "Elegir";
+    }
+}

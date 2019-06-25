@@ -1,0 +1,18 @@
+<div *ngIf="currentStatus === status.Opciones" class = "content">
+  <div (click)="scan()">
+    <i class="fas fa-qrcode fa-5x"></i>
+  </div>
+  <div>
+    <i class="fas fa-id-card fa-5x"></i>
+  </div>
+  <div>
+    <i class="fas fa-user-plus fa-5x"></i>
+  </div>
+</div>
+
+<div *ngIf="currentStatus === status.Camara" class = "content">
+  <barcode-scanner-livestream type="code_128" (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
+    <div [hidden]="!barcodeValue">
+        {{barcodeValue}}
+    </div>
+</div>
