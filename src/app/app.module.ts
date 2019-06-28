@@ -11,12 +11,16 @@ import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
 import { AltaRrppComponent } from './alta-rrpp/alta-rrpp.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { HistorialRecuentosComponent } from './historial-recuentos/historial-recuentos.component';
+import { ListsComponent } from './lists/lists.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'asistencia-rrpp', component: AsistenciaRrppComponent},
   {path: 'alta-rrpp', component: AltaRrppComponent},
+  {path: 'lista', component: ListsComponent},
+  {path: 'historial-recuentos', component: HistorialRecuentosComponent},
 ];
 @NgModule({
   declarations: [
@@ -25,6 +29,8 @@ const appRoutes: Routes = [
     HomeComponent,
     AsistenciaRrppComponent,
     AltaRrppComponent,
+    ListsComponent,
+    HistorialRecuentosComponent,
   ],
   imports: [
     BrowserModule,
