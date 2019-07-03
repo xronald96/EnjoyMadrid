@@ -13,9 +13,15 @@ export class AltaRrppComponent implements OnInit {
   curRRPP: FormGroup;
   submitted  = false;
   alert = false;
+  listBosses;
   constructor(public formBuilder: FormBuilder,
               public router: Router,
-              private altaRRPP: AltaRRPPService) { }
+              private altaRRPP: AltaRRPPService) {
+                 this.altaRRPP.getBosses().subscribe((res) => {
+                   console.log('JEfes', res);
+                   this.listBosses = res;
+                 });
+              }
 
   ngOnInit() {
     this.curRRPP = this.formBuilder.group({
@@ -24,7 +30,8 @@ export class AltaRrppComponent implements OnInit {
       email:  ['', [Validators.required, Validators.email]],
       birthday:  ['', [Validators.required]],
       dni:  ['', [Validators.required, Validators.minLength(8)]],
-      teamBoss:  ['', [Validators.required, Validators.minLength(1)]],
+      idBoss:  ['', [Validators.required, Validators.minLength(1)]],
+      rrpp:  ['', [Validators.required]],
     });
   }
 
@@ -33,8 +40,8 @@ export class AltaRrppComponent implements OnInit {
   create() {
     this.submitted  = true;
     if (this.curRRPP.valid) {
+      // Vambiar teamBoss Por idBoss
       this.altaRRPP.newRRPP(this.curRRPP.value).subscribe((result) => {
-        console.log('Resultado', result);
         this.curRRPP.reset();
         this.submitted  = false;
       }, this.altaRRPP.handleError);

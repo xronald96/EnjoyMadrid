@@ -10,13 +10,15 @@ export class AltaRRPPService {
   constructor(public http: HttpClient) { }
 
   importRRPPs(files: object) {
-    console.log('llego al import');
     return this.http.post(this.url + '/import-rrpp', files, {responseType: 'text'});
   }
 
   newRRPP(rrpp: object) {
-    console.log('llego al xrear');
     return this.http.post(this.url + '/new-rrpp', rrpp, {responseType: 'text'});
+  }
+
+  getBosses() {
+    return this.http.get(this.url + '/select-boss', {responseType: 'json'});
   }
 
   public handleError(error: HttpErrorResponse) {
