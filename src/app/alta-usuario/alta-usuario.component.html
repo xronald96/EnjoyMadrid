@@ -1,0 +1,35 @@
+<div class="content">
+  <div class="titulo">
+    Crear Usuario
+  </div>
+  <form [formGroup]="curUser" (ngSubmit)="create()">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Nombre</label>
+        <input type="text" class="form-control"  placeholder="Introduzca nombre" formControlName="name" [ngClass]="{ 'is-invalid': submitted && f.name.errors }">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Apellidos</label>
+        <input type="text" class="form-control"  placeholder="Introduzca apellidos" formControlName="surname"  [ngClass]="{ 'is-invalid': submitted && f.surname.errors }">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Contraseña</label>
+        <input type="text" class="form-control"  placeholder="Introduzca Contraseña" formControlName="password"  [ngClass]="{ 'is-invalid': submitted && f.surname.errors }">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Confirmar Contraseña</label>
+        <input type="text" class="form-control"  placeholder="Confirme Contraseña" formControlName="confirmPassword"  [ngClass]="{ 'is-invalid': submitted && f.surname.errors }">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input type="email" class="form-control" placeholder="Introduzca email" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+      </div>
+<!--      
+      <div class="form-group">
+        <label for="exampleInputEmail1">Discoteca / Sesion</label>
+        <select class="form-control" formControlName="idCompani"   [ngClass]="{ 'is-invalid': submitted && f.teamBoss.errors }">
+          <option *ngFor="let item of listBosses" value="{{item._id}}">{{item.name}}</option>
+        </select>
+       </div> -->
+      <button type="submit" class="btn btn-dark save">Crear</button>
+  </form>
+</div>

@@ -1,0 +1,41 @@
+import { Component, OnInit } from '@angular/core';
+import { AltaUsuariosService } from '../../services/usuarios/alta-usuarios.service';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { from } from 'rxjs';
+
+@Component({
+  selector: 'app-alta-usuario',
+  templateUrl: './alta-usuario.component.html',
+  styleUrls: ['./alta-usuario.component.scss']
+})
+export class AltaUsuarioComponent implements OnInit {
+
+  curUser: FormGroup;
+  submitted  = false;
+
+  constructor(public formBuilder: FormBuilder,
+              public router: Router,
+              private servicesUser: AltaUsuariosService)  { }
+
+  ngOnInit() {
+    this.curUser = this.formBuilder.group({
+      name: ['', [Validators.required, Validators.minLength(2)]],
+      surname:  ['', [Validators.required, Validators.minLength(2)]],
+      email:  ['', [Validators.required, Validators.email]],
+      password:  ['', [Validators.required]],
+      confirmPassword:  ['', [Validators.required]],
+      // idCompani:  ['', [Validators.required]],
+    });
+  }
+
+
+  create() {
+    this.submitted  = true;
+    if (this.curUser.valid && this.curUser.get('password').value === this.curUser.get('confirmPassword').value) {
+      this.servicesUser.createUser(this.curUser).subscribe((res) => {
+      this.submitted  = false;
+      }, this.servicesUser.handleError);
+    }
+  }
+}

@@ -4,22 +4,20 @@ import { throwError } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class AltaRRPPService {
+export class AltaUsuariosService {
 
-  url = 'http://localhost:8000/altaRRPP';
+  url = 'http://localhost:8000/usuarios';
   constructor(public http: HttpClient) { }
 
-  importRRPPs(files: object) {
-    return this.http.post(this.url + '/import-rrpp', files, {responseType: 'text'});
+
+  createUser(user) {
+    return this.http.post(this.url + '/create', user, {responseType: 'json'});
   }
 
-  newRRPP(rrpp: object) {
-    return this.http.post(this.url + '/new-rrpp', rrpp, {responseType: 'text'});
+  getUser(id) {
+    return this.http.get(this.url + '?id=' + id, {responseType: 'json'});
   }
 
-  getBosses() {
-    return this.http.get(this.url + '/select-boss', {responseType: 'json'});
-  }
 
   public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {

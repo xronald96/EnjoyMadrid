@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { AltaRRPPService } from 'src/services/alta-rrpps/altaRRPP.service';
+import { RrppsService } from 'src/services/rrpps/altaRRPP.service';
 
 @Component({
   selector: 'app-alta-rrpp',
   templateUrl: './alta-rrpp.component.html',
   styleUrls: ['./alta-rrpp.component.scss']
 })
-export class AltaRrppComponent implements OnInit {
+export class RrppComponent implements OnInit {
   curRRPP: FormGroup;
   submitted  = false;
   alert = false;
   listBosses;
   constructor(public formBuilder: FormBuilder,
               public router: Router,
-              private altaRRPP: AltaRRPPService) {
-                 this.altaRRPP.getBosses().subscribe((res) => {
+              private rrppService: RrppsService) {
+                 this.rrppService.getBosses().subscribe((res) => {
                    console.log('JEfes', res);
                    this.listBosses = res;
                  });
@@ -41,10 +41,10 @@ export class AltaRrppComponent implements OnInit {
     this.submitted  = true;
     if (this.curRRPP.valid) {
       // Vambiar teamBoss Por idBoss
-      this.altaRRPP.newRRPP(this.curRRPP.value).subscribe((result) => {
+      this.rrppService.newRRPP(this.curRRPP.value).subscribe((result) => {
         this.curRRPP.reset();
         this.submitted  = false;
-      }, this.altaRRPP.handleError);
+      }, this.rrppService.handleError);
     }
   }
   onFileChange(event) {
@@ -54,8 +54,8 @@ export class AltaRrppComponent implements OnInit {
       formData.append(file.name, file); // file.name is optional
   }
     console.log('form data', formData);
-    this.altaRRPP.importRRPPs(formData).subscribe((result) => {
+    this.rrppService.importRRPPs(formData).subscribe((result) => {
       console.log('Resultado', result);
-    }, this.altaRRPP.handleError);
+    }, this.rrppService.handleError);
   }
 }

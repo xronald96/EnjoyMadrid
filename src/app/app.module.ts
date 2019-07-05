@@ -8,17 +8,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { AsistenciaRrppComponent } from './asistencia-rrpp/asistencia-rrpp.component';
 import { BarecodeScannerLivestreamModule } from 'ngx-barcode-scanner';
-import { AltaRrppComponent } from './alta-rrpp/alta-rrpp.component';
+import { RrppComponent } from './alta-rrpp/alta-rrpp.component';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { HistorialRecuentosComponent } from './historial-recuentos/historial-recuentos.component';
 import { ListsComponent } from './lists/lists.component';
+import { AltaUsuarioComponent } from './alta-usuario/alta-usuario.component';
 const appRoutes: Routes = [
   {path: '', redirectTo: '/login', pathMatch: 'full'},
   {path: 'login', component: LoginComponent},
   {path: 'home', component: HomeComponent},
   {path: 'asistencia-rrpp', component: AsistenciaRrppComponent},
-  {path: 'alta-rrpp', component: AltaRrppComponent},
+  {path: 'alta-usuario', component: AltaUsuarioComponent},
+  {path: 'alta-rrpp', component: RrppComponent},
   {path: 'lista', component: ListsComponent},
   {path: 'historial-recuentos', component: HistorialRecuentosComponent},
 ];
@@ -28,9 +30,10 @@ const appRoutes: Routes = [
     LoginComponent,
     HomeComponent,
     AsistenciaRrppComponent,
-    AltaRrppComponent,
+    RrppComponent,
     ListsComponent,
     HistorialRecuentosComponent,
+    AltaUsuarioComponent,
   ],
   imports: [
     BrowserModule,

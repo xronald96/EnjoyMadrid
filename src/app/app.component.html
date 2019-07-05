@@ -28,7 +28,11 @@
           </div>
         </li>
       </ul>
-      <div class ="exit">
+
+      <div class ="exit" (click)="navBar=!navBar" [routerLink]="['/alta-usuario']">
+        Crear Usuario
+      </div>
+      <div class ="exit" (click)="navBar=!navBar" [routerLink]="['/login']">
         Salir <i class="fas fa-sign-out-alt fa-2x"></i>
       </div>
     </nav>

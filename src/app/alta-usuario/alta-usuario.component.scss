@@ -1,0 +1,29 @@
+.content{
+    display: flex;
+    flex-direction: column;
+    height: 91%;
+    width: 100%;
+    position: absolute;
+    .titulo{
+        display: flex;
+        justify-content: center;
+        font-weight: bold;
+        height: 5%;
+        justify-content: center;
+        align-items: center;
+    }
+    form{
+        height: 88%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        div{
+            width: 80%;
+        }
+        
+        .save{
+            background-color: black !important;
+            margin-bottom: 2%
+        }
+    }
+}
