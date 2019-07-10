@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AltaRrppComponent } from './alta-rrpp.component';
+import { RrppComponent } from './alta-rrpp.component';
 
-describe('AltaRrppComponent', () => {
-  let component: AltaRrppComponent;
-  let fixture: ComponentFixture<AltaRrppComponent>;
+describe('RrppComponent', () => {
+  let component: RrppComponent;
+  let fixture: ComponentFixture<RrppComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AltaRrppComponent ]
+      declarations: [ RrppComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AltaRrppComponent);
+    fixture = TestBed.createComponent(RrppComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

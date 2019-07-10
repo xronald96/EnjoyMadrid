@@ -29,13 +29,14 @@ export class AltaUsuarioComponent implements OnInit {
     });
   }
 
+  get f() { return this.curUser.controls; } // Get the form
 
   create() {
     this.submitted  = true;
     if (this.curUser.valid && this.curUser.get('password').value === this.curUser.get('confirmPassword').value) {
-      this.servicesUser.createUser(this.curUser).subscribe((res) => {
+      this.servicesUser.createUser(this.curUser.value).subscribe((res) => {
       this.submitted  = false;
-      }, this.servicesUser.handleError);
+      });
     }
   }
 }

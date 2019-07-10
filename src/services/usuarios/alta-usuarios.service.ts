@@ -11,7 +11,7 @@ export class AltaUsuariosService {
 
 
   createUser(user) {
-    return this.http.post(this.url + '/create', user, {responseType: 'json'});
+    return this.http.post(this.url, user, {responseType: 'json'});
   }
 
   getUser(id) {

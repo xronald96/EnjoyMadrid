@@ -18,7 +18,6 @@ export class RrppComponent implements OnInit {
               public router: Router,
               private rrppService: RrppsService) {
                  this.rrppService.getBosses().subscribe((res) => {
-                   console.log('JEfes', res);
                    this.listBosses = res;
                  });
               }
@@ -35,7 +34,9 @@ export class RrppComponent implements OnInit {
     });
   }
 
-  get f() { return this.curRRPP.controls; } // Get the form
+  get f() {
+    return this.curRRPP.controls;
+  } // Get the form
 
   create() {
     this.submitted  = true;
