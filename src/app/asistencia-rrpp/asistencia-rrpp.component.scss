@@ -12,6 +12,19 @@
         align-items: center;
         justify-content: center;
         color: black;
+    }
+    .opciones{
+        display: flex;
+        flex-direction: column;
         border-top: solid black
+    }
+}
+
+.searchContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .buttonSearch{
+        background-color: black;
     }
 }

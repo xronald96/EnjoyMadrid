@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
+
 @Injectable({
   providedIn: 'root'
 })
-export class LoginService {
-  url = 'http://localhost:8000/login';
+export class AsistenciaRrppService {
+
+  url = 'http://localhost:8000/asistencia-rrpp';
   constructor(public http: HttpClient) { }
 
-  login(credentials: any) {
-    return this.http.post(this.url, credentials, {responseType: 'text'}).subscribe((result) => {
-    }, this.handleError);
+
+  searchByText(textToSearch){
+    return this.http.post(this.url, textToSearch, {responseType: 'json'});
   }
 
-  private handleError(error: HttpErrorResponse) {
+  public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {

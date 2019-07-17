@@ -1,18 +1,43 @@
+
+
+<!--
+  OPCIONES VIEW
+ -->
 <div *ngIf="currentStatus === status.Opciones" class = "content">
-  <div (click)="scan()">
+  <div (click)="swapView('Camara')" class="opciones">
     <i class="fas fa-qrcode fa-5x"></i>
+    <p>Escaner</p>
   </div>
-  <div>
+  <div class="opciones" (click)="swapView('Buscar')">
     <i class="fas fa-id-card fa-5x"></i>
+    <p>Nombre de lista</p>
   </div>
-  <div>
+  <div class="opciones">
     <i class="fas fa-user-plus fa-5x"></i>
+    <p>Añadir manualmente</p>
   </div>
 </div>
 
-<div *ngIf="currentStatus === status.Camara" class = "content">
+<!--
+  ESCANER VIEW
+ -->
+<div *ngIf="currentStatus === status.Camara" class="content">
   <barcode-scanner-livestream type="code_128" (valueChanges)="onValueChanges($event)"></barcode-scanner-livestream>
     <div [hidden]="!barcodeValue">
         {{barcodeValue}}
     </div>
 </div>
+
+<!--
+  BUSCAR VIEW
+ -->
+
+ <div *ngIf="currentStatus === status.Buscar" class="content">
+  <div class="searchContent">
+      <div class="form-group" class="searchContent">
+        <label for="searchText">Nombre de lista / Correo Electrónico</label>
+        <input type="text" class="form-control"  placeholder="Introduzca dato"  [(ngModel)]="searchText">
+      </div>
+      <button class="btn btn-dark buttonSearch" (click)="search(searchText)">Buscar</button>
+  </div>
+ </div>
