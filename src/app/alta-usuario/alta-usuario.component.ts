@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AltaUsuariosService } from '../../services/usuarios/alta-usuarios.service';
+import { DiscotecasService } from '../../services/discotecas/discotecas.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { from } from 'rxjs';
@@ -13,10 +14,15 @@ export class AltaUsuarioComponent implements OnInit {
 
   curUser: FormGroup;
   submitted  = false;
-
+  discotecas;
   constructor(public formBuilder: FormBuilder,
               public router: Router,
-              private servicesUser: AltaUsuariosService)  { }
+              private servicesUser: AltaUsuariosService,
+              private discoSerice: DiscotecasService)  {
+                this.discoSerice.getDiscotecas().subscribe(res => {
+                  this.discotecas = res;
+                });
+               }
 
   ngOnInit() {
     this.curUser = this.formBuilder.group({
@@ -25,7 +31,7 @@ export class AltaUsuarioComponent implements OnInit {
       email:  ['', [Validators.required, Validators.email]],
       password:  ['', [Validators.required]],
       confirmPassword:  ['', [Validators.required]],
-      // idCompani:  ['', [Validators.required]],
+      idCompani:  ['', [Validators.required]],
     });
   }
 

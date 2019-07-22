@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
 export class AppComponent {
   title = 'enjoyMadrid';
   navBar = false;
+
 constructor(
   public router: Router
 ) {

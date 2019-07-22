@@ -11,7 +11,7 @@ export class AsistenciaRrppService {
   constructor(public http: HttpClient) { }
 
 
-  searchByText(textToSearch){
+  searchByText(textToSearch) {
     return this.http.post(this.url, textToSearch, {responseType: 'json'});
   }
 
