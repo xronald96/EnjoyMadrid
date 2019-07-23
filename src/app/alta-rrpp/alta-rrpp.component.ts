@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { RrppsService } from 'src/services/rrpps/altaRRPP.service';
+import { IfStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-alta-rrpp',
@@ -29,9 +30,10 @@ export class RrppComponent implements OnInit {
       email:  ['', [Validators.required, Validators.email]],
       birthday:  ['', [Validators.required]],
       listName:  ['', [Validators.required, Validators.minLength(1)]],
-      idBoss:  ['', [Validators.required]],
+      idBoss:  [null],
       rrpp:  ['', [Validators.required]],
     });
+    this.updateValidators();
   }
 
   get f() {
@@ -58,5 +60,15 @@ export class RrppComponent implements OnInit {
     this.rrppService.importRRPPs(formData).subscribe((result) => {
       console.log('Resultado', result);
     }, this.rrppService.handleError);
+  }
+
+  updateValidators() {
+   this.curRRPP.get('rrpp').valueChanges.subscribe(rrpp => {
+      if (rrpp === 'RRPP') {
+        this.f.idBoss.setValidators([Validators.required]);
+      } else if (rrpp === 'JEFE') {
+        this.f.idBoss.setValidators(null);
+      }
+    });
   }
 }
