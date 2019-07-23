@@ -28,8 +28,8 @@ export class RrppComponent implements OnInit {
       surname:  ['', [Validators.required, Validators.minLength(2)]],
       email:  ['', [Validators.required, Validators.email]],
       birthday:  ['', [Validators.required]],
-      listName:  ['', [Validators.required, Validators.minLength(8)]],
-      idBoss:  ['', [Validators.required, Validators.minLength(1)]],
+      listName:  ['', [Validators.required, Validators.minLength(1)]],
+      idBoss:  ['', [Validators.required]],
       rrpp:  ['', [Validators.required]],
     });
   }

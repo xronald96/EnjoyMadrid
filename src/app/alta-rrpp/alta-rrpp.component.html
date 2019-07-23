@@ -21,21 +21,21 @@
       </div>
       <div class="form-group">
         <label for="exampleInputEmail1">Nombre de lista</label>
-        <input type="text" class="form-control" placeholder="Introduzca nombre de lista" formControlName="listName" [ngClass]="{ 'is-invalid': submitted && f.dni.errors }">
+        <input type="text" class="form-control" placeholder="Introduzca nombre de lista" formControlName="listName" [ngClass]="{ 'is-invalid': submitted && f.listName.errors }">
       </div>
-      <div class="form-group">
-        <label for="exampleInputEmail1">Jefe de equipo</label>
-        <select class="form-control" formControlName="idBoss"   [ngClass]="{ 'is-invalid': submitted && f.teamBoss.errors }">
-          <option *ngFor="let item of listBosses" value="{{item._id}}">{{item.name}}</option>
-        </select>
-       </div>
-      <div class="form-group">
+      <div class="form-group" >
         <label for="exampleInputEmail1">RRPP</label>
         <select class="form-control" formControlName="rrpp">
-          <option>RRPP</option>
-          <option>Jefe de Equipo</option>
+          <option value="RRPP">RRPP</option>
+          <option value="Jefe de Equipo">Jefe de Equipo</option>
         </select>
       </div>
+      <div class="form-group" *ngIf="f.rrpp.value === 'RRPP'">
+          <label for="exampleInputEmail1">Jefe de equipo</label>
+          <select class="form-control" formControlName="idBoss"   [ngClass]="{ 'is-invalid': submitted && f.idBoss.errors }">
+            <option *ngFor="let item of listBosses" value="{{item._id}}">{{item.name}}</option>
+          </select>
+         </div>
       <button type="submit" class="btn btn-dark save">Crear</button>
       
   </form>
