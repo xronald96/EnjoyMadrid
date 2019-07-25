@@ -1,4 +1,22 @@
-<div class="content">
+
+
+<!--
+  OPCIONES VIEW
+ -->
+ <div *ngIf="currentStatus === status.Opciones" class="content">
+    <div class="opciones"(click)="swapView('Perfil')">
+        <i class="fas fa-id-card fa-5x"></i>
+        <p>RRPPs</p>
+      </div>
+      <div class="opciones" (click)="swapView('Alta')">
+        <i class="fas fa-user-plus fa-5x"></i>
+        <p>Añadir RRPP</p>
+      </div>
+  </div>
+<!--
+  OPCIONES ALTA RRPP
+ -->
+<div class="content" *ngIf="currentStatus === status.Alta">
   <div class="titulo">
     Alta RRPP
   </div>
@@ -54,3 +72,29 @@
       </div>
   </div>
 </div>
+
+
+<!--
+  OPCIONES Perfil
+ -->
+
+ <div class="content" *ngIf="currentStatus === status.Perfil">
+   <div class="buscador">
+     <!-- Search form -->
+    <input class="form-control" type="text" placeholder="Buscar" aria-label="Search" [formControl]="toSearch">
+   </div>
+   <div class="lista">
+      <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Nombre de lista</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let item of listRelaciones">
+              <td>{{item.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+   </div>
+ </div>

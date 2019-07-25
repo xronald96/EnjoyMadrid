@@ -1,9 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
-
 import { RrppsService } from 'src/services/rrpps/altaRRPP.service';
-import { IfStmt } from '@angular/compiler';
+import { debounceTime } from 'rxjs/operators';
+
+export enum Status {
+  Opciones = 1,
+  Alta = 2,
+  Perfil = 3,
+}
+
+
 
 @Component({
   selector: 'app-alta-rrpp',
@@ -11,16 +18,19 @@ import { IfStmt } from '@angular/compiler';
   styleUrls: ['./alta-rrpp.component.scss']
 })
 export class RrppComponent implements OnInit {
+  toSearch = new FormControl();
+  status = Status;
+  currentStatus: Status;
   curRRPP: FormGroup;
   submitted  = false;
   alert = false;
   listBosses;
+  listRelaciones;
   constructor(public formBuilder: FormBuilder,
               public router: Router,
               private rrppService: RrppsService) {
-                 this.rrppService.getBosses().subscribe((res) => {
-                   this.listBosses = res;
-                 });
+                 this.currentStatus = this.status.Opciones;
+
               }
 
   ngOnInit() {
@@ -34,6 +44,11 @@ export class RrppComponent implements OnInit {
       rrpp:  ['', [Validators.required]],
     });
     this.updateValidators();
+    this.toSearch.valueChanges.pipe(debounceTime(300)).subscribe( data => {
+      this.rrppService.getAllRRPPs(data).subscribe(res => {
+        this.listRelaciones = res;
+      });
+    });
   }
 
   get f() {
@@ -70,5 +85,14 @@ export class RrppComponent implements OnInit {
         this.f.idBoss.setValidators(null);
       }
     });
+  }
+
+  swapView(nameView: string) {
+    if (nameView === 'Alta') {
+      this.rrppService.getBosses().subscribe((res) => {
+        this.listBosses = res;
+      });
+    }
+    this.currentStatus = this.status[nameView];
   }
 }

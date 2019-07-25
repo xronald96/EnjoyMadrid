@@ -22,6 +22,10 @@ export class RrppsService {
     return this.http.get(this.url + '/select-boss', {responseType: 'json'});
   }
 
+  getAllRRPPs(toSearch: string) { // Array.from
+    return this.http.get(this.url + '/getAll?toSearch=' + toSearch || 'null', {responseType: 'json'});
+  }
+
   public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);

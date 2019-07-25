@@ -3,7 +3,7 @@
     <div (click) = "navBar=!navBar"  class="barNav"><i class="fas fa-bars fa-2x">
     </i></div>
     <div class="title" (click)="navBar = false;" [routerLink]="['/home']">Enjoy Madrid</div>
-    <div class="backNav" *ngIf="router.url !== '/home'"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></div>
+    <!-- <div class="backNav" *ngIf="router.url !== '/home'" (click)="back()"><i class="fas fa-arrow-alt-circle-left fa-2x"></i></div> --> 
   </div>
   <nav *ngIf="navBar" class ="menu">
       <ul>
@@ -24,7 +24,7 @@
         </li>
         <li (click)="navBar=!navBar" [routerLink]="['/alta-rrpp']"> 
           <div>
-            Alta de RRPPs
+            RRPPs
           </div>
         </li>
       </ul>

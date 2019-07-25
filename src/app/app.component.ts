@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {Router} from '@angular/router';
-
+import {Location} from '@angular/common';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -11,7 +11,12 @@ export class AppComponent {
   navBar = false;
 
 constructor(
-  public router: Router
+  public router: Router,
+  private location: Location
 ) {
+  }
+
+  back() {
+    this.location.back();
   }
 }

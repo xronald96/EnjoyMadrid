@@ -45,3 +45,11 @@
         content: "Elegir";
     }
 }
+.opciones{
+    display: flex;
+    flex-direction: column;
+    border-top: solid black;
+    height: 50%;
+    justify-content: center;
+    align-items: center;
+}
