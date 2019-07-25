@@ -12,7 +12,7 @@ export class AsistenciaRrppService {
 
 
   searchByText(textToSearch) {
-    return this.http.post(this.url, textToSearch, {responseType: 'json'});
+    return this.http.post(this.url, textToSearch).toPromise();
   }
 
   public handleError(error: HttpErrorResponse) {

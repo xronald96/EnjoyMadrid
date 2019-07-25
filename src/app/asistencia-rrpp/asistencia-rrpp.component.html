@@ -40,4 +40,24 @@
       </div>
       <button class="btn btn-dark buttonSearch" (click)="search(searchText)">Buscar</button>
   </div>
+  <div *ngIf="buscando">
+     
+       
+    <div class="respuesta" *ngIf="!errorBusqueda">
+        <div class="card bg-success cardContent" >
+            <div class="card-body text-center cardContent">
+                <div class="card-text"><b>Nombre:</b> &nbsp; {{curRRPP.name}}</div>
+                <div class="card-text"><b>Nombre de lista:</b> &nbsp; {{curRRPP.listName}}</div>
+                <div class="card-text"><b>Copas:</b> &nbsp; 4</div>
+            </div>
+          </div>
+    </div>
+    <div class="respuesta" *ngIf="errorBusqueda">
+        <div class="card bg-danger cardContent">
+            <div class="card-body text-center cardContent">
+              <p class="card-text"><b>Error en la busqueda</b></p>
+            </div>
+          </div> 
+    </div>
+  </div>
  </div>

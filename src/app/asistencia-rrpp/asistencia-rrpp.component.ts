@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { BarecodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
 import { Router } from '@angular/router';
-import { AsistenciaRrppService} from '../../services/asistencia-rrpp/asistencia-rrpp.service'
+import { AsistenciaRrppService} from '../../services/asistencia-rrpp/asistencia-rrpp.service';
 export enum Status {
   Opciones = 1,
   Camara = 2,
@@ -19,6 +19,8 @@ export class AsistenciaRrppComponent implements OnInit, AfterViewInit {
   barcodeValue: any;
   searchText: string;
   curRRPP;
+  errorBusqueda = false;
+  buscando = false;
   @ViewChild(BarecodeScannerLivestreamComponent)
   barecodeScanner: BarecodeScannerLivestreamComponent;
 
@@ -39,15 +41,22 @@ export class AsistenciaRrppComponent implements OnInit, AfterViewInit {
   onValueChanges(result) {
     this.barcodeValue = result.codeResult.code;
   }
-  swapView(nameView: string){
+  swapView(nameView: string) {
     this.currentStatus = this.status[nameView];
   }
 
-  search(){
-    if(this.searchText && this.searchText !== ""){
-      this.asistenciaRRPP.searchByText(this.searchText).subscribe((result) => {
-        this.curRRPP = result;
-      }, this.asistenciaRRPP.handleError)
+  search() {
+    if (this.searchText && this.searchText !== '') {
+      this.asistenciaRRPP.searchByText({toSearch: this.searchText}).then((response) => {
+        this.errorBusqueda = false;
+        this.buscando = true;
+        if (!response[0]) {
+          this.errorBusqueda = true;
+          this.curRRPP = null;
+        } else {
+          this.curRRPP = response[0];
+        }
+      });
     }
   }
 }

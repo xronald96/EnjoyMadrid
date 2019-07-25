@@ -18,6 +18,17 @@
         flex-direction: column;
         border-top: solid black
     }
+    .respuesta{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 50%;
+    }
+    .cardContent{
+        flex-direction: column;
+        height: 100%;
+        display: flex;
+    }
 }
 
 .searchContent{
@@ -27,4 +38,5 @@
     .buttonSearch{
         background-color: black;
     }
+
 }
