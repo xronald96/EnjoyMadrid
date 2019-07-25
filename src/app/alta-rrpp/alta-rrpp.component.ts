@@ -92,6 +92,10 @@ export class RrppComponent implements OnInit {
       this.rrppService.getBosses().subscribe((res) => {
         this.listBosses = res;
       });
+    } else if (nameView === 'Perfil') {
+      this.rrppService.getAllRRPPs('').subscribe(res => {
+        this.listRelaciones = res;
+      });
     }
     this.currentStatus = this.status[nameView];
   }
