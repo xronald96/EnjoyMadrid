@@ -9,11 +9,10 @@ export class LoginService {
   constructor(public http: HttpClient) { }
 
   login(credentials: any) {
-    return this.http.post(this.url, credentials, {responseType: 'text'}).subscribe((result) => {
-    }, this.handleError);
+    return this.http.post(this.url, credentials, {responseType: 'text'});
   }
 
-  private handleError(error: HttpErrorResponse) {
+  public handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
     } else {

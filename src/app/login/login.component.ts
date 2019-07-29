@@ -19,8 +19,10 @@ export class LoginComponent implements OnInit {
 
   login() {
     if (this.credentials) {
-      this.loginServive.login(this.credentials);
-      this.router.navigate(['/home']);
+      this.loginServive.login(this.credentials).subscribe(res => {
+        localStorage.setItem('EnjoyMadrid_user', res);
+        this.router.navigate(['/home']);
+      }, this.loginServive.handleError);
     }
   }
 }
