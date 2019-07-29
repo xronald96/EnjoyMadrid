@@ -26,9 +26,9 @@
      
       <div class="form-group">
         <label for="exampleInputEmail1">Discoteca / Sesion</label>
-        <select class="form-control" formControlName="idCompani"   [ngClass]="{ 'is-invalid': submitted && f.idCompani.errors }">
-          <option value="" selected="selected">Seleccione una discoteca</option>
-          <option *ngFor="let item of discotecas" value="{{item.id}}">{{item.nombre}}-{{item.sesion}}</option>
+        <select class="form-control" formControlName="idCompany" [ngClass]="{ 'is-invalid': submitted && f.idCompany.errors }">
+          <option value="">Seleccione una discoteca</option>
+          <option *ngFor="let item of discotecas" value="{{item._id}}">{{item.nombre}}-{{item.sesion}}</option>
         </select>
        </div>
       <button type="submit" class="btn btn-dark save">Crear</button>

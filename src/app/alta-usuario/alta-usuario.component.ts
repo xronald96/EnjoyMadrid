@@ -31,7 +31,7 @@ export class AltaUsuarioComponent implements OnInit {
       email:  ['', [Validators.required, Validators.email]],
       password:  ['', [Validators.required]],
       confirmPassword:  ['', [Validators.required]],
-      idCompani:  ['', [Validators.required]],
+      idCompany:  ['', [Validators.required]],
     });
   }
 

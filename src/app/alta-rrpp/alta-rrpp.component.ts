@@ -84,6 +84,7 @@ export class RrppComponent implements OnInit {
       } else if (rrpp === 'JEFE') {
         this.f.idBoss.setValidators(null);
       }
+      this.curRRPP.controls.idBoss.updateValueAndValidity();
     });
   }
 
