@@ -45,9 +45,7 @@ export class RrppComponent implements OnInit {
     });
     this.updateValidators();
     this.toSearch.valueChanges.pipe(debounceTime(300)).subscribe( data => {
-      this.rrppService.getAllRRPPs(data).subscribe(res => {
-        this.listRelaciones = res;
-      });
+      this.rrppService.getAllRRPPs(data).then(res => this.listRelaciones = res).catch(err => this.rrppService.handleError(err));
     });
   }
 
@@ -94,9 +92,7 @@ export class RrppComponent implements OnInit {
         this.listBosses = res;
       });
     } else if (nameView === 'Perfil') {
-      this.rrppService.getAllRRPPs('').subscribe(res => {
-        this.listRelaciones = res;
-      });
+      this.rrppService.getAllRRPPs('').then(res => this.listRelaciones = res).catch(err => this.rrppService.handleError(err));
     }
     this.currentStatus = this.status[nameView];
   }
