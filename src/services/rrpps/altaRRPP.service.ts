@@ -24,13 +24,13 @@ export class RrppsService {
 
   getAllRRPPs(toSearch: string) { // Array.from
     const userDate = JSON.parse(localStorage.getItem('EnjoyMadrid_user'));
-    const httpOptions = {
+    const header =  {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
         Authorization: userDate.token
-      }),
-    };
-    return this.http.get(this.url + '/getAll?toSearch=' + toSearch || 'null', httpOptions).toPromise();
+      })};
+    const  headers = new  HttpHeaders().set('Authorization', userDate.token).set('Content-Type', 'application/json');
+    return this.http.get(this.url + '/getAll?toSearch=' + toSearch || 'null', {headers}).toPromise();
   }
 
   public handleError(error: HttpErrorResponse) {
