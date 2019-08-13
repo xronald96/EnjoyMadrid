@@ -23,14 +23,9 @@ export class RrppsService {
   }
 
   getAllRRPPs(toSearch: string) { // Array.from
-    const userDate = JSON.parse(localStorage.getItem('EnjoyMadrid_user'));
-    // const header =  {
-    //   headers: new HttpHeaders({
-    //     'Content-Type':  'application/json',
-    //     Authorization: userDate.token
-    //   })};
-    // const  headers = new  HttpHeaders().set('Authorization', userDate.token).set('Content-Type', 'application/json');
-    const headers = new HttpHeaders({Authorization: userDate.token, 'Content-Type': 'application/json'});
+    const userData = JSON.parse(localStorage.getItem('EnjoyMadrid_user')) ? JSON.parse(localStorage.getItem('EnjoyMadrid_user')) : null;
+    const token = userData && userData.token ?  JSON.parse(localStorage.getItem('EnjoyMadrid_user')).token : '';
+    const headers = new HttpHeaders({Authorization: token, 'Content-Type': 'application/json'});
     return this.http.get(this.url + '/getAll?toSearch=' + toSearch || 'null', {headers}).toPromise();
   }
 
@@ -38,7 +33,7 @@ export class RrppsService {
     console.log('Entro por auwi', error);
     if (error.error instanceof ErrorEvent) {
       console.error('An error occurred:', error.error.message);
-    } else if (error.error.message === 'Token is not valid') {
+    } else if (error.error.message && !error.error.succes) { // Si tenemos mensaje de error y succes false volvemos a loggearnos
       this.router.navigate(['/login']);
     } else {
       console.error(
