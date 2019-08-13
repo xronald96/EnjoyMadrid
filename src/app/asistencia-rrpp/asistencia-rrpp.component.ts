@@ -22,6 +22,7 @@ export class AsistenciaRrppComponent implements OnInit, AfterViewInit {
   curRRPP;
   errorBusqueda = false;
   buscando = false;
+  responseSign;
   @ViewChild(BarecodeScannerLivestreamComponent)
   barecodeScanner: BarecodeScannerLivestreamComponent;
 
@@ -57,7 +58,9 @@ export class AsistenciaRrppComponent implements OnInit, AfterViewInit {
           this.curRRPP = null;
         } else {
           this.curRRPP = response[0];
-          this.asistenciaRRPP.signAssistance({id: this.curRRPP._id}).then().catch(this.generalService.handleError);
+          this.asistenciaRRPP.signAssistance({id: this.curRRPP._id}).then((res) => {
+            this.responseSign = res;
+          }).catch(this.generalService.handleError);
         }
       }).catch(this.generalService.handleError);
     }
