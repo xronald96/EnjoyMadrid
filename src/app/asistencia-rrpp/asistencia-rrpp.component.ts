@@ -2,6 +2,7 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { BarecodeScannerLivestreamComponent } from 'ngx-barcode-scanner';
 import { Router } from '@angular/router';
 import { AsistenciaRrppService} from '../../services/asistencia-rrpp/asistencia-rrpp.service';
+import { GeneralService } from 'src/services/general';
 export enum Status {
   Opciones = 1,
   Camara = 2,
@@ -26,7 +27,8 @@ export class AsistenciaRrppComponent implements OnInit, AfterViewInit {
 
   constructor(
     private router: Router,
-    private asistenciaRRPP: AsistenciaRrppService
+    private asistenciaRRPP: AsistenciaRrppService,
+    private generalService: GeneralService
     ) {
     this.currentStatus = this.status.Opciones;
    }
@@ -55,8 +57,9 @@ export class AsistenciaRrppComponent implements OnInit, AfterViewInit {
           this.curRRPP = null;
         } else {
           this.curRRPP = response[0];
+          this.asistenciaRRPP.signAssistance({id: this.curRRPP._id}).then().catch(this.generalService.handleError);
         }
-      });
+      }).catch(this.generalService.handleError);
     }
   }
 }

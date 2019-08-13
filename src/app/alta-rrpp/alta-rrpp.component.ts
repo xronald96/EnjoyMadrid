@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { RrppsService } from 'src/services/rrpps/altaRRPP.service';
+import {GeneralService} from '../../services/general';
 import { debounceTime } from 'rxjs/operators';
 
 export enum Status {
@@ -28,7 +29,8 @@ export class RrppComponent implements OnInit {
   listRelaciones;
   constructor(public formBuilder: FormBuilder,
               public router: Router,
-              private rrppService: RrppsService) {
+              private rrppService: RrppsService,
+              private generalService: GeneralService) {
                  this.currentStatus = this.status.Opciones;
 
               }
@@ -45,7 +47,7 @@ export class RrppComponent implements OnInit {
     });
     this.updateValidators();
     this.toSearch.valueChanges.pipe(debounceTime(300)).subscribe( data => {
-      this.rrppService.getAllRRPPs(data).then(res => this.listRelaciones = res).catch(err => this.rrppService.handleError(err));
+      this.rrppService.getAllRRPPs(data).then(res => this.listRelaciones = res).catch(this.generalService.handleError);
     });
   }
 
@@ -60,7 +62,7 @@ export class RrppComponent implements OnInit {
       this.rrppService.newRRPP(this.curRRPP.value).subscribe((result) => {
         this.curRRPP.reset();
         this.submitted  = false;
-      }, this.rrppService.handleError);
+      }, this.generalService.handleError);
     }
   }
   onFileChange(event) {
@@ -72,7 +74,7 @@ export class RrppComponent implements OnInit {
     console.log('form data', formData);
     this.rrppService.importRRPPs(formData).subscribe((result) => {
       console.log('Resultado', result);
-    }, this.rrppService.handleError);
+    }, this.generalService.handleError);
   }
 
   updateValidators() {
@@ -92,7 +94,7 @@ export class RrppComponent implements OnInit {
         this.listBosses = res;
       });
     } else if (nameView === 'Perfil') {
-      this.rrppService.getAllRRPPs('').then(res => this.listRelaciones = res).catch(err => this.rrppService.handleError(err));
+      this.rrppService.getAllRRPPs('').then(res => this.listRelaciones = res).catch(this.generalService.handleError);
     }
     this.currentStatus = this.status[nameView];
   }
