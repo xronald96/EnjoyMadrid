@@ -1,7 +1,7 @@
 .content{
     display: flex;
     flex-direction: column;
-    height: 91%;
+    // height: 91%;
     width: 100%;
     position: absolute;
     .titulo{
@@ -52,4 +52,8 @@
     height: 50%;
     justify-content: center;
     align-items: center;
+}
+
+.choseHeight{
+    height: 91%;
 }
